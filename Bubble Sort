@@ -13,10 +13,8 @@ public class BubbleSort {
 
     public static void bubbleSort(int[] arr) {
         int n = arr.length;
-        boolean swapped;
-
+    
         for (int i = 0; i < n - 1; i++) {
-            swapped = false;
 
             // Compare adjacent elements
             for (int j = 0; j < n - i - 1; j++) {
@@ -29,17 +27,13 @@ public class BubbleSort {
                 }
             }
 
-            // If no elements were swapped, array is already sorted
-            if (!swapped) {
-                break;
-            }
         }
     }
 }
 
 
 
-
+<-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 Time Complexity:
 Best Case (Already Sorted Array):
 O(n): The loop runs once without any swaps due to the swapped flag.
