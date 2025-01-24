@@ -1,0 +1,72 @@
+
+public class MergeSort {
+
+    public static void main(String[] args) {
+        int arr[] = {3, 7, 5, 7, 8, 9, 5};
+        int s = 0;
+        int e = arr.length - 1;
+
+        mergeSort(arr, s, e);
+
+        for (int i : arr) {
+            System.out.println(i);
+        }
+    }
+
+    public static void mergeSort(int arr[], int s, int e) {
+        if (s == e) {
+            return; // Base case: if there is only one element, return
+        }
+
+        int mid = s + (e - s) / 2;
+
+        // Recursive calls to sort left and right halves
+        mergeSort(arr, s, mid);
+        mergeSort(arr, mid + 1, e);
+
+        // Merge the sorted halves
+        Merge(arr, s, mid, e);
+    }
+
+    public static void Merge(int arr[], int s, int mid, int e) {
+        int l = mid - s + 1; // Size of left subarray   
+        int r = e - mid;     // Size of right subarray
+
+        int leftarr[] = new int[l];
+        int rightarr[] = new int[r];
+
+        // Copy data into left and right subarrays
+        for (int i = 0; i < l; i++) {
+            leftarr[i] = arr[s + i];
+        }
+        for (int i = 0; i < r; i++) {
+            rightarr[i] = arr[mid + 1 + i];
+        }
+
+        int i = 0, j = 0, k = s;
+
+        // Merge the subarrays back into the original array
+        while (i < l && j < r) {
+            if (leftarr[i] <= rightarr[j]) {
+                arr[k++] = leftarr[i++];
+            } else {
+                arr[k++] = rightarr[j++];
+            }
+        }
+
+        // Copy remaining elements of leftArr[], if any
+        while (i < l) {
+            arr[k++] = leftarr[i++];
+        }
+
+        // Copy remaining elements of rightArr[], if any
+        while (j < r) {
+            arr[k++] = rightarr[j++];
+        }
+    }
+}
+
+
+// Time Complexity in best , average and worst cases is ===  O(nlogn)
+// Space Complexity is O(n)
+//formula of subarray size j - i +1
